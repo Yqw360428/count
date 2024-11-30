@@ -1,19 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:padding="20dp"
+        android:background="@color/ff2f8bff"
+        android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white50"
+            android:textSize="16sp"
+            android:text="@string/welcome"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="2dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:text="@string/app_name"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/main_set"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/main_set"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:overScrollMode="never">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fontFamily="@font/poppins_bold"
+                android:layout_marginTop="24dp"
+                android:textColor="@color/ff1d1d25"
+                android:textSize="16sp"
+                android:text="@string/emi_calculators"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/main_basic"
+                android:layout_width="match_parent"
+                android:layout_height="74dp"
+                android:layout_marginTop="16dp"
+                app:fontFamily="@font/poppins_regular"
+                android:background="@drawable/shape_main_item"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:drawablePadding="24dp"
+                android:drawableStart="@mipmap/icon1"
+                android:textColor="@color/ff1d1d25"
+                android:textSize="14sp"
+                android:text="@string/emi_basic"
+                android:gravity="center_vertical"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/main_advanced"
+                android:layout_width="match_parent"
+                android:layout_height="74dp"
+                android:layout_marginTop="16dp"
+                app:fontFamily="@font/poppins_regular"
+                android:background="@drawable/shape_main_item"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:drawablePadding="24dp"
+                android:drawableStart="@mipmap/icon2"
+                android:textColor="@color/ff1d1d25"
+                android:textSize="14sp"
+                android:text="@string/emi_advanced"
+                android:gravity="center_vertical"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fontFamily="@font/poppins_bold"
+                android:layout_marginTop="24dp"
+                android:textColor="@color/ff1d1d25"
+                android:textSize="16sp"
+                android:text="@string/gst_amp_vat_calculators"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/main_gst"
+                android:layout_width="match_parent"
+                android:layout_height="74dp"
+                android:layout_marginTop="16dp"
+                app:fontFamily="@font/poppins_regular"
+                android:background="@drawable/shape_main_item"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:drawablePadding="24dp"
+                android:drawableStart="@mipmap/icon3"
+                android:textColor="@color/ff1d1d25"
+                android:textSize="14sp"
+                android:text="@string/gst"
+                android:gravity="center_vertical"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/main_vat"
+                android:layout_width="match_parent"
+                android:layout_height="74dp"
+                android:layout_marginTop="16dp"
+                app:fontFamily="@font/poppins_regular"
+                android:background="@drawable/shape_main_item"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:drawablePadding="24dp"
+                android:drawableStart="@mipmap/icon4"
+                android:textColor="@color/ff1d1d25"
+                android:textSize="14sp"
+                android:text="@string/vat"
+                android:gravity="center_vertical"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fontFamily="@font/poppins_bold"
+                android:layout_marginTop="24dp"
+                android:textColor="@color/ff1d1d25"
+                android:textSize="16sp"
+                android:text="@string/cash_calculators"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/main_cash"
+                android:layout_width="match_parent"
+                android:layout_height="74dp"
+                android:layout_marginTop="16dp"
+                app:fontFamily="@font/poppins_regular"
+                android:background="@drawable/shape_main_item"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:drawablePadding="24dp"
+                android:drawableStart="@mipmap/icon5"
+                android:textColor="@color/ff1d1d25"
+                android:textSize="14sp"
+                android:text="@string/cash"
+                android:gravity="center_vertical"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

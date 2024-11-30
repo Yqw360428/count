@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">Count</string>
+    <string name="app_name">Finance Simplified</string>
+    <string name="welcome">Welcome</string>
+    <string name="emi_calculators">EMI Calculators</string>
+    <string name="emi_basic">EMI-Basic</string>
+    <string name="emi_advanced">EMI-Advanced</string>
+    <string name="gst_amp_vat_calculators"><![CDATA[GST&VAT Calculators]]></string>
+    <string name="gst">GST</string>
+    <string name="vat">VAT</string>
+    <string name="cash_calculators">Cash Calculators</string>
+    <string name="cash">Cash</string>
+    <string name="set_hint1">If you have any questions, don’t hesitate to reach out to us!</string>
+    <string name="set_hint2">Shenzhen Europa Technology Co., Ltd</string>
+    <string name="set_hint3">Copyright © www.AxureUX.com, All Rights Reserved.</string>
+    <string name="settings">Settings</string>
 </resources>

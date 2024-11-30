@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/bar"
+        layout="@layout/layout_title"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="76dp"
+        android:layout_height="76dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_marginTop="50dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="16sp"
+        android:textColor="@color/ff111827"
+        android:text="@string/app_name"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/set_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/ffababab"
+        android:textSize="12sp"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_set_item"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="40dp"
+        android:padding="20dp"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/ff2f8bff"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/set_hint1"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/set_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="16dp"
+            android:drawableStart="@mipmap/phone"
+            android:drawableEnd="@mipmap/copy"
+            android:drawablePadding="12dp"
+            android:textColor="@color/ff2b332e"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="phone number"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/set_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="16dp"
+            android:drawableStart="@mipmap/email"
+            android:drawableEnd="@mipmap/copy"
+            android:drawablePadding="12dp"
+            android:textColor="@color/ff2b332e"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="email"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/ff686868"
+        android:textSize="12sp"
+        android:text="@string/set_hint2"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="10sp"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/ffababab"
+        android:text="@string/set_hint3"
+        tools:ignore="SmallSp" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

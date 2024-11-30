@@ -3,7 +3,6 @@ package com.someca.count.base
 import android.annotation.SuppressLint
 import android.app.Service
 import android.content.Intent
-import android.graphics.Color
 import android.os.Build
 import android.os.Build.VERSION
 import android.os.Bundle
@@ -59,9 +58,6 @@ abstract class BaseActivity<B : ViewBinding> : AppCompatActivity() {
         return super.dispatchTouchEvent(ev)
     }
 
-    /**
-     * 判断是否隐藏软键盘
-     */
     private fun isShouldHideKeyboard(view: View?, event: MotionEvent): Boolean {
         if (view != null && (view is AppCompatEditText)) {
             val l = intArrayOf(0, 0)
@@ -101,16 +97,21 @@ abstract class BaseActivity<B : ViewBinding> : AppCompatActivity() {
         permissionResult.launch(permissions)
     }
 
-    protected fun immersion(fullScreen : Boolean = false,statusBarLight : Boolean = false){
+    protected fun immersion(fullScreen : Boolean = true,statusBarLight : Boolean = false){
         WindowCompat.setDecorFitsSystemWindows(window,!fullScreen)
         val controller = WindowCompat.getInsetsController(window,binding.root)
         controller.isAppearanceLightStatusBars = statusBarLight//true是黑色，false是白色
         controller.isAppearanceLightNavigationBars = statusBarLight //true是深色 false是浅色
         if (fullScreen){
-            window.navigationBarColor = Color.TRANSPARENT
-
+            window.statusBarColor = ContextCompat.getColor(this,R.color.ff2f8bff)
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.white)
             if (VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 window.isNavigationBarContrastEnforced = false
+            }
+            if (navigationBarExit()){
+                binding.root.setPadding(0,getStatusBarHeight(),0,getNavigationBarHeight())
+            }else{
+                binding.root.setPadding(0,getStatusBarHeight(),0,0)
             }
         }else{
             window.statusBarColor = ContextCompat.getColor(this, R.color.black)

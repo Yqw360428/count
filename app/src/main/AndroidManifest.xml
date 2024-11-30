@@ -15,7 +15,7 @@
         android:theme="@style/Theme.Count"
         tools:targetApi="31">
         <activity
-            android:name=".ui.StartActivity"
+            android:name=".ui.MainActivity"
             android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
@@ -24,7 +24,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.MainActivity"
+        <activity android:name=".ui.StartActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.SetActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.EmiActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.TaxActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.CashActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.ScheduleActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
     </application>
