@@ -31,12 +31,14 @@
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.EmiActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.TaxActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.CashActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.ScheduleActivity"

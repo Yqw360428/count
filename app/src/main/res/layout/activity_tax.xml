@@ -1,6 +1,365 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="type"
+            type="Integer" />
+        <variable
+            name="half"
+            type="String" />
+        <variable
+            name="tax"
+            type="com.someca.count.bean.TaxBean" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/bar"
+            layout="@layout/layout_title" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            android:overScrollMode="never">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:textColor="@color/ff111827"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/initial_amount"/>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/shape_cash_edit">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/tax_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textSize="16sp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:inputType="numberDecimal"
+                        android:digits="0123456789.1"
+                        android:textColor="@color/ff111827"
+                        android:textColorHint="@color/cdcdcd"
+                        android:fontFamily="@font/poppins_regular"
+                        android:hint="@string/please_input"
+                        android:background="@color/transparent"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/shape_emi_item"
+                        android:gravity="center"
+                        android:textColor="@color/_9ca3af"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="@string/qian"/>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:textColor="@color/ff111827"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@{type == 0 ? @string/gst_rate : @string/vat_rate}"/>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/shape_cash_edit">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/tax_rate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textSize="16sp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:inputType="numberDecimal"
+                        android:digits="0123456789."
+                        android:textColor="@color/ff111827"
+                        android:textColorHint="@color/cdcdcd"
+                        android:fontFamily="@font/poppins_regular"
+                        android:hint="@string/please_input"
+                        android:background="@color/transparent"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/shape_emi_item"
+                        android:gravity="center"
+                        android:textColor="@color/_9ca3af"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="@string/per"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:textColor="@color/ff111827"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@{type == 0 ? @string/charging_gst : @string/charging_vat}"/>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/shape_cash_edit">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tax_charging"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textSize="16sp"
+                        android:gravity="center_vertical"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:inputType="number"
+                        android:digits="0123456789"
+                        android:textColor="@color/ff111827"
+                        android:textColorHint="@color/cdcdcd"
+                        android:fontFamily="@font/poppins_regular"
+                        android:hint="@string/add_gst"
+                        android:background="@color/transparent"/>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/tax_select_charging"
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="4dp"
+                        android:scaleType="centerInside"
+                        android:background="@drawable/shape_emi_item"
+                        android:src="@mipmap/dow"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="32dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tax_reset"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_chash_reset"
+                        android:gravity="center"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textSize="14sp"
+                        android:textColor="@color/ff2f8bff"
+                        android:text="@string/reset"
+                        android:layout_marginEnd="10dp"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tax_calculate"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@drawable/shape_calculate"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textSize="14sp"
+                        android:text="@string/calculate"
+                        android:textColor="@color/white"
+                        android:layout_marginStart="10dp"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="20dp"
+                    android:padding="20dp"
+                    android:background="@drawable/shape_main_item">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{type != 0 ? View.GONE : View.VISIBLE}"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/_686868"
+                            android:textSize="14sp"
+                            android:text='@{@string/cgst+half}'/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/ff111827"
+                            android:text='@{@string/qian+String.valueOf(tax.half)}'
+                            android:textSize="14sp"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:visibility="@{type != 0 ? View.GONE : View.VISIBLE}"
+                        android:background="@color/dee3e9"
+                        android:layout_marginTop="14dp"/>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:visibility="@{type != 0 ? View.GONE : View.VISIBLE}"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/_686868"
+                            android:textSize="14sp"
+                            android:text='@{@string/sgst+half}'/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/ff111827"
+                            android:text='@{@string/qian+String.valueOf(tax.half)}'
+                            android:textSize="14sp"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:visibility="@{type != 0 ? View.GONE : View.VISIBLE}"
+                        android:background="@color/dee3e9"
+                        android:layout_marginTop="14dp"/>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/_686868"
+                            android:textSize="14sp"
+                            android:text='@{type == 0 ? @string/total_gst : @string/total_vat}'/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/ff111827"
+                            android:text='@{@string/qian+String.valueOf(tax.totalTax)}'
+                            android:textSize="14sp"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dee3e9"
+                        android:layout_marginTop="14dp"/>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textColor="@color/_686868"
+                                android:textSize="14sp"
+                                android:text="@string/total_cost"/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textColor="@color/ababab"
+                                android:textSize="12sp"
+                                android:text='@{type == 0 ? @string/gst_inclusive : @string/vat_inclusive}'/>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/ff111827"
+                            android:text='@{@string/qian+String.valueOf(tax.totalCost)}'
+                            android:textSize="14sp"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

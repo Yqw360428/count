@@ -50,4 +50,6 @@ dependencies {
 
     //RecyclerView BRVAH
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7'
+
+    implementation 'com.github.li-xiaojun:XPopup:2.9.18'
 }

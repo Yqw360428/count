@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="com.someca.count.bean.CashBean"/>
+        <variable
+            name="cash"
+            type="CashBean" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:visibility="@{cash.custom ? View.GONE : View.VISIBLE}"
+            android:textColor="@color/black"
+            android:text="@{String.valueOf(cash.num1)}"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/cash_edit1"
+            android:layout_width="60dp"
+            android:layout_height="31dp"
+            android:visibility="@{!cash.custom ? View.GONE : View.VISIBLE}"
+            android:background="@drawable/shape_cash_edit"
+            android:inputType="number"
+            android:gravity="center"
+            android:singleLine="true"
+            android:digits="0123456789"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="16sp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:text="@string/x"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="10dp"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/cash_jia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{cash.custom ? View.GONE : View.VISIBLE}"
+            android:src="@mipmap/jia"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/cash_edit2"
+            android:layout_width="wrap_content"
+            android:layout_height="31dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_cash_edit"
+            android:inputType="number"
+            android:gravity="center"
+            android:singleLine="true"
+            android:digits="0123456789"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="16sp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/cash_jian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{cash.custom ? View.GONE : View.VISIBLE}"
+            android:src="@mipmap/jian"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:text="@string/deng"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/poppins_regular"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/cash_result"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="end"/>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>
