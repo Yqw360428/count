@@ -8,57 +8,71 @@
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:layout_marginStart="1dp"
-            android:layout_marginEnd="1dp"
-            android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/_686868"
-            android:textSize="12sp"
-            android:text="@{schedule.time}"/>
+            android:layout_height="50dp">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:layout_marginStart="1dp"
-            android:layout_marginEnd="1dp"
-            android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/_161616"
-            android:textSize="12sp"
-            android:text='@{@string/qian+String.valueOf(schedule.principal)}' />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="1dp"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/_686868"
+                android:textSize="12sp"
+                android:text="@{schedule.time}"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:layout_marginStart="1dp"
-            android:layout_marginEnd="1dp"
-            android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/_161616"
-            android:textSize="12sp"
-            android:text='@{@string/qian+String.valueOf(schedule.interest)}' />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="1dp"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/_161616"
+                android:textSize="12sp"
+                android:text='@{@string/qian+String.valueOf(schedule.principal)}' />
 
-        <androidx.appcompat.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="1dp"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/_161616"
+                android:textSize="12sp"
+                android:text='@{@string/qian+String.valueOf(schedule.interest)}' />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="1dp"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/_161616"
+                android:textSize="12sp"
+                android:text='@{@string/qian+String.valueOf(schedule.total)}' />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:layout_marginStart="1dp"
-            android:layout_marginEnd="1dp"
-            android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/_161616"
-            android:textSize="12sp"
-            android:text='@{@string/qian+String.valueOf(schedule.total)}' />
+            android:layout_height="1dp"
+            android:background="@color/ffefefef"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+
 </layout>

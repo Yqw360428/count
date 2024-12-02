@@ -59,8 +59,8 @@
                         android:textSize="16sp"
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp"
-                        android:inputType="number"
-                        android:digits="0123456789"
+                        android:inputType="numberDecimal"
+                        android:digits="0123456789."
                         android:textColor="@color/ff111827"
                         android:textColorHint="@color/cdcdcd"
                         android:fontFamily="@font/poppins_regular"
@@ -216,12 +216,12 @@
                         android:textSize="16sp"
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp"
-                        android:inputType="number"
-                        android:digits="0123456789"
+                        android:inputType="numberDecimal"
+                        android:digits="0123456789."
                         android:textColor="@color/ff111827"
                         android:textColorHint="@color/cdcdcd"
                         android:fontFamily="@font/poppins_regular"
-                        android:hint="@string/_1_360"
+                        android:hint="@string/please_input"
                         android:background="@color/transparent"/>
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -417,7 +417,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:textColor="@color/ababab"
                                 android:textSize="12sp"
-                                android:text="@string/principal_interest"/>
+                                android:text='@{type == 0 ? @string/principal_interest : @string/principal_interest1}'/>
 
                         </androidx.appcompat.widget.LinearLayoutCompat>
 

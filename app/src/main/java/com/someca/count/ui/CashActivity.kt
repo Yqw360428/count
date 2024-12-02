@@ -11,21 +11,9 @@ import com.someca.count.utils.setOnSingleClick
 
 class CashActivity : BaseActivity<ActivityCashBinding>() {
     private val cashList = mutableListOf<CashBean>()
-    private val cashAdapter by lazy {
-        CashAdapter(cashList).apply {
-            setHasStableIds(true)
-            onCalculateListener={
-
-            }
-        }
-    }
     @SuppressLint("SetTextI18n")
     override fun initView() {
         binding.bar.barTitle.text = getString(R.string.cash)
-        binding.rvCash.apply {
-            layoutManager = LinearLayoutManager(this@CashActivity)
-            adapter = cashAdapter
-        }
         resetData()
 
         binding.bar.barBack.setOnSingleClick {
@@ -45,6 +33,11 @@ class CashActivity : BaseActivity<ActivityCashBinding>() {
     @SuppressLint("NotifyDataSetChanged")
     private fun resetData(){
         cashList.clear()
+        val cashAdapter = CashAdapter(cashList)
+        binding.rvCash.apply {
+            layoutManager = LinearLayoutManager(this@CashActivity)
+            adapter = cashAdapter
+        }
         cashList.apply {
             add(CashBean(isCustom = false, num1 = 500, num2 = 0, result = 0))
             add(CashBean(isCustom = false, num1 = 200, num2 = 0, result = 0))

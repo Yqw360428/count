@@ -33,7 +33,8 @@
     <string name="total_interest">Total Interest</string>
     <string name="monthly_loan_emi">Monthly Loan EMI</string>
     <string name="total_cost">Total Cost</string>
-    <string name="principal_interest">Principal+Interest</string>
+    <string name="principal_interest">Loan Amount+Interest</string>
+    <string name="principal_interest1">Loan Amount+Interest+Fees and Charge</string>
     <string name="repayment_schedule"><u>Repayment Schedule</u></string>
     <string name="advance_emi">Advance EMI</string>
     <string name="initial_amount">Initial Amount</string>
@@ -55,4 +56,5 @@
     <string name="principal">Principal</string>
     <string name="interest">Interest</string>
     <string name="total">Total</string>
+    <string name="_0">0</string>
 </resources>

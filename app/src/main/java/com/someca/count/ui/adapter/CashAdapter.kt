@@ -13,18 +13,18 @@ class CashAdapter(data : MutableList<CashBean>) : BaseAdapter<ItemCashBinding,Ca
     @SuppressLint("SetTextI18n")
     override fun convert(binding: ItemCashBinding, item: CashBean) {
         binding.cash = item
-        binding.cashEdit1.setText(item.num1.toString())
-        binding.cashEdit2.setText(item.num2.toString())
+        binding.cashEdit1.setText(if (item.num1 == 0) "" else item.num1.toString())
+        binding.cashEdit2.setText(if (item.num2 == 0) "" else item.num2.toString())
         binding.cashResult.text = context.getString(R.string.qian)+item.result
 
         binding.cashJia.setOnClickListener {
             item.num2++
-            binding.cashEdit2.setText(item.num2.toString())
+            binding.cashEdit2.setText(if (item.num2 == 0) "" else item.num2.toString())
         }
 
         binding.cashJian.setOnClickListener {
             item.num2 = (item.num2 - 1).coerceAtLeast(0)
-            binding.cashEdit2.setText(item.num2.toString())
+            binding.cashEdit2.setText(if (item.num2 == 0) "" else item.num2.toString())
         }
 
         binding.cashEdit1.addTextChangedListener {

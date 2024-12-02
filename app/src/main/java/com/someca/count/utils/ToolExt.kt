@@ -7,11 +7,27 @@ import android.content.Context
 import android.icu.text.DecimalFormat
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import com.lxj.xpopup.XPopup
 import com.someca.count.App
-import java.math.BigDecimal
+import com.someca.count.bean.ScheduleBean
+import kotlinx.coroutines.suspendCancellableCoroutine
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.Response
+import org.json.JSONObject
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+import java.util.concurrent.TimeUnit
+import kotlin.coroutines.resume
+import kotlin.math.pow
+import kotlin.math.round
 
 var lastClickTime = 0L
 const val internalTime = 500L
@@ -56,6 +72,83 @@ fun View.initPopup(data : Array<String>,onSelectListener : (Int,String)->Unit){
         .show()
 }
 
-fun Float.fixNum() : Float{
-    return DecimalFormat("#.##").format(this).toFloat()
+fun Double.fixNum() : Double{
+    return DecimalFormat("#.##").format(this).toDouble()
+}
+
+fun calculateTotalInterest(principal: Double, annualRate: Double, months : Int): Double {
+    val monthlyRate = annualRate / 100
+    val monthlyPayment = principal * monthlyRate * (1 + monthlyRate).pow(months.toDouble()) /
+            ((1 + monthlyRate).pow(months.toDouble()) - 1)
+    val totalRepayment = monthlyPayment * months
+    return totalRepayment - principal
+}
+
+fun calculateEMIArrears(loanAmount: Double, rate: Double, months: Int): Double {
+    val emiArrears = (loanAmount * rate * (1 + rate).pow(months.toDouble())) / ((1 + rate).pow(
+        months.toDouble()
+    ) - 1)
+    return emiArrears
+}
+
+fun calculateAdvance(loanAmount: Double, rate: Double, n: Int): Double {
+    val rateFactor = (1 + rate).pow((n - 1).toDouble())
+    val emiAdvance = (loanAmount * rate * rateFactor) / ((1 + rate).pow(n.toDouble()) - 1)
+    return emiAdvance
+}
+
+fun calculateEMIRepaymentSchedule(loanAmount: Double, rate: Double, months: Int): MutableList<ScheduleBean> {
+    val repaymentSchedule = mutableListOf<ScheduleBean>()
+    val emi = (loanAmount * rate * (1 + rate).pow(months.toDouble())) / ((1 + rate).pow(months.toDouble()) - 1)
+    val calendar = Calendar.getInstance()
+    val formatter = SimpleDateFormat("yyyy-MM", Locale.getDefault())
+    var remainingLoan = loanAmount
+    for (i in 0 until months) {
+        val interest = remainingLoan * rate
+        val principal = emi - interest
+        val total = principal + interest
+        val date = formatter.format(calendar.time)
+        repaymentSchedule.add(ScheduleBean(date, round(principal).toInt(), round(interest).toInt(), round(total).toInt()))
+        remainingLoan -= principal
+        calendar.add(Calendar.MONTH, 1)
+    }
+
+    return repaymentSchedule
+}
+suspend fun getNetData(): Response?{
+    return suspendCancellableCoroutine {
+        OkHttpClient.Builder()
+            .connectTimeout(12, TimeUnit.SECONDS)
+            .writeTimeout(12, TimeUnit.SECONDS)
+            .readTimeout(12, TimeUnit.SECONDS)
+            .build()
+            .newCall(
+                Request.Builder()
+                    .url("")
+                    .addHeader("Content-Type", "application/json")
+                    .post(
+                        JSONObject().apply {
+
+                        }.toString().toRequestBody("application/json".toMediaTypeOrNull())
+                    ).build()
+            )
+            .enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    if (it.isActive){
+                        it.resume(null)
+                    }
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    if (it.isActive){
+                        if (response.code == 200){
+                            it.resume(response)
+                        }else{
+                            it.resume(null)
+                        }
+                    }
+                }
+
+            })
+    }
 }
