@@ -63,7 +63,7 @@
             android:textColor="@color/ff2b332e"
             android:textSize="14sp"
             android:fontFamily="@font/poppins_regular"
-            android:text="phone number"/>
+            android:text="@string/_92_319_199_4956"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/set_email"
@@ -77,7 +77,7 @@
             android:textColor="@color/ff2b332e"
             android:textSize="14sp"
             android:fontFamily="@font/poppins_regular"
-            android:text="email"/>
+            android:text="@string/asimawan0829_gmail_com"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

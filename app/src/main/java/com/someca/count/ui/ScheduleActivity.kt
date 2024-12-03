@@ -21,6 +21,7 @@ class ScheduleActivity : BaseActivity<ActivityScheduleBinding>() {
     private var amount = 0.0
     private var rate = 0.0
     private var tenure = 0
+    private var schemeType = 0 //0 arrear 1 advance
 
     @SuppressLint("NotifyDataSetChanged")
     override fun initView() {
@@ -30,6 +31,7 @@ class ScheduleActivity : BaseActivity<ActivityScheduleBinding>() {
             amount = getDouble("amount")
             rate = getDouble("rate")
             tenure = getInt("tenure")
+            schemeType = getInt("schemeType")
         }
 
         binding.bar.barBack.setOnSingleClick {
@@ -41,7 +43,7 @@ class ScheduleActivity : BaseActivity<ActivityScheduleBinding>() {
             adapter = scheduleAdapter
         }
 
-        schedulerList.addAll(calculateEMIRepaymentSchedule(amount,rate,tenure))
+        schedulerList.addAll(calculateEMIRepaymentSchedule(amount,rate,tenure,schemeType))
         scheduleAdapter.notifyDataSetChanged()
     }
 }

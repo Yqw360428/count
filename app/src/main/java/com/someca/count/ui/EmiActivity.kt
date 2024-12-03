@@ -41,7 +41,7 @@ class EmiActivity : BaseActivity<ActivityEmiBinding>() {
 
         binding.emiRate.addTextChangedListener {
             if (it.isNullOrBlank()) return@addTextChangedListener
-            rate = it.toString().toDouble()/12
+            rate = it.toString().toDouble()/12/100
         }
 
         binding.emiTenure.addTextChangedListener {
@@ -115,6 +115,7 @@ class EmiActivity : BaseActivity<ActivityEmiBinding>() {
                 putDouble("amount",amount)
                 putDouble("rate",rate)
                 putInt("tenure",tenure)
+                putInt("schemeType",schemeType)
             })
         }
 

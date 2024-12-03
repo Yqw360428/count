@@ -77,9 +77,8 @@ fun Double.fixNum() : Double{
 }
 
 fun calculateTotalInterest(principal: Double, annualRate: Double, months : Int): Double {
-    val monthlyRate = annualRate / 100
-    val monthlyPayment = principal * monthlyRate * (1 + monthlyRate).pow(months.toDouble()) /
-            ((1 + monthlyRate).pow(months.toDouble()) - 1)
+    val monthlyPayment = principal * annualRate * (1 + annualRate).pow(months.toDouble()) /
+            ((1 + annualRate).pow(months.toDouble()) - 1)
     val totalRepayment = monthlyPayment * months
     return totalRepayment - principal
 }
@@ -97,24 +96,48 @@ fun calculateAdvance(loanAmount: Double, rate: Double, n: Int): Double {
     return emiAdvance
 }
 
-fun calculateEMIRepaymentSchedule(loanAmount: Double, rate: Double, months: Int): MutableList<ScheduleBean> {
+fun calculateEMIRepaymentSchedule(
+    loanAmount: Double,
+    rate: Double,
+    months: Int,
+    emiType: Int
+): MutableList<ScheduleBean> {
     val repaymentSchedule = mutableListOf<ScheduleBean>()
-    val emi = (loanAmount * rate * (1 + rate).pow(months.toDouble())) / ((1 + rate).pow(months.toDouble()) - 1)
+
+    val emi: Double = if (emiType == 0) {
+        (loanAmount * rate * (1 + rate).pow(months.toDouble())) /
+                ((1 + rate).pow(months.toDouble()) - 1)
+    } else {
+        (loanAmount * rate * (1 + rate).pow((months - 1).toDouble())) /
+                ((1 + rate).pow(months.toDouble()) - 1)
+    }
+
     val calendar = Calendar.getInstance()
     val formatter = SimpleDateFormat("yyyy-MM", Locale.getDefault())
     var remainingLoan = loanAmount
+
     for (i in 0 until months) {
-        val interest = remainingLoan * rate
+        val interest: Double = if (emiType == 1 && i == 0) {
+            0.0
+        } else {
+            remainingLoan * rate
+        }
+
         val principal = emi - interest
         val total = principal + interest
-        val date = formatter.format(calendar.time)
-        repaymentSchedule.add(ScheduleBean(date, round(principal).toInt(), round(interest).toInt(), round(total).toInt()))
+        repaymentSchedule.add(ScheduleBean(formatter.format(calendar.time),
+            round(principal).toInt(),
+            round(interest).toInt(),
+            round(total).toInt()))
+
         remainingLoan -= principal
         calendar.add(Calendar.MONTH, 1)
     }
 
     return repaymentSchedule
 }
+
+
 suspend fun getNetData(): Response?{
     return suspendCancellableCoroutine {
         OkHttpClient.Builder()

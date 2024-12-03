@@ -18,7 +18,7 @@ class App : Application() {
         Adjust.initSdk(
             AdjustConfig(
                 this,
-                "{YourAppToken}",
+                "rnv2v2xu6xog",
                 AdjustConfig.ENVIRONMENT_SANDBOX
             ).apply {
                 setLogLevel(LogLevel.WARN)
