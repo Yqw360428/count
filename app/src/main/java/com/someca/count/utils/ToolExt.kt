@@ -1,25 +1,27 @@
 package com.someca.count.utils
 
+import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipDescription
 import android.content.ClipboardManager
 import android.content.Context
 import android.icu.text.DecimalFormat
+import android.provider.Settings
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatTextView
+import com.google.gson.Gson
 import com.lxj.xpopup.XPopup
 import com.someca.count.App
+import com.someca.count.BuildConfig
+import com.someca.count.bean.InitBean
 import com.someca.count.bean.ScheduleBean
 import kotlinx.coroutines.suspendCancellableCoroutine
 import okhttp3.Call
 import okhttp3.Callback
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
-import org.json.JSONObject
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -138,7 +140,8 @@ fun calculateEMIRepaymentSchedule(
 }
 
 
-suspend fun getNetData(): Response?{
+@SuppressLint("HardwareIds")
+suspend fun getNetData(context: Context): InitBean?{
     return suspendCancellableCoroutine {
         OkHttpClient.Builder()
             .connectTimeout(12, TimeUnit.SECONDS)
@@ -147,13 +150,14 @@ suspend fun getNetData(): Response?{
             .build()
             .newCall(
                 Request.Builder()
-                    .url("")
+                    .url("https://product.financesimplified.pro/kynqni/jfssi")
                     .addHeader("Content-Type", "application/json")
-                    .post(
-                        JSONObject().apply {
-
-                        }.toString().toRequestBody("application/json".toMediaTypeOrNull())
-                    ).build()
+                    .addHeader("strategy", Settings.Secure.getString(context.contentResolver,Settings.Secure.ANDROID_ID))
+                    .addHeader("possible",BuildConfig.VERSION_NAME)
+                    .addHeader("create","FSproduct")
+                    .addHeader("flavour",BuildConfig.VERSION_CODE.toString())
+                    .get()
+                    .build()
             )
             .enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
@@ -164,11 +168,7 @@ suspend fun getNetData(): Response?{
 
                 override fun onResponse(call: Call, response: Response) {
                     if (it.isActive){
-                        if (response.code == 200){
-                            it.resume(response)
-                        }else{
-                            it.resume(null)
-                        }
+                        it.resume(Gson().fromJson(response.body?.string(),InitBean::class.java))
                     }
                 }
 

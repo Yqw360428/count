@@ -2,10 +2,12 @@ package com.someca.count.ui
 
 import android.os.Bundle
 import android.text.Html
+import androidx.lifecycle.lifecycleScope
 import com.someca.count.R
 import com.someca.count.base.BaseActivity
 import com.someca.count.databinding.ActivityMainBinding
 import com.someca.count.utils.setOnSingleClick
+import kotlinx.coroutines.launch
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun initView() {
