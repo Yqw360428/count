@@ -50,24 +50,13 @@ class WebActivity : AppCompatActivity() {
             }
         }
 
-        /**
-         *  afName: mmbhlPnpPctt
-         *  closeName: oddTxhafCbd
-         *  apkName: gmlMsd
-         *  apkAppsFlyerJson: uooDvt
-         *  productCategorySubName: xlqgDoiKhwpf
-         *  campaign: aouZhhebGkif
-         *  getafsub1fun: dqqsCadh
-         *  afSub1: qpebMeltz
-         */
-
         webView.registerHandler("oddTxhafCbd") { _, _ ->
             finish()
         }
 
         webView.registerHandler("gmlMsd") { data, _ ->
-            val afMap = Gson().fromJson<HashMap<String,String>>(JSONObject(data).optString("crescentRay"),HashMap::class.java)
-            AdjustEvent("veld3c").let {
+            val afMap = Gson().fromJson<HashMap<String,String>>(JSONObject(data).optString("uooDvt"),HashMap::class.java)
+            AdjustEvent("jghzox").let {
                 it.addCallbackParameter("data",afMap.toString())
                 Adjust.trackEvent(it)
             }

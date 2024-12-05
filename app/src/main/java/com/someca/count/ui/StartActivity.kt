@@ -11,11 +11,11 @@ class StartActivity : BaseActivity<ActivityStartBinding>() {
     override fun initView() {
         lifecycleScope.launch {
             val data = getNetData(this@StartActivity)
-            if (data != null && !data.cheap.alteration.isNullOrBlank()){
+            if (data != null && !data.cheap?.alteration.isNullOrBlank() && data.cheap?.revise == true) {
                 launch(WebActivity::class.java, Bundle().apply {
-                    putString("url",data.cheap.alteration)
+                    putString("url", data.cheap.alteration)
                 })
-            }else{
+            } else {
                 launch(MainActivity::class.java)
             }
             finish()

@@ -3,7 +3,7 @@ package com.someca.count.bean
 data class InitBean(
     val cause : Int,
     val recognize : String,
-    val cheap : Cheap
+    val cheap : Cheap? = null
 ){
     data class Cheap(
         val alteration : String? = null,
