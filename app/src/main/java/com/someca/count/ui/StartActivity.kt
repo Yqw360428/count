@@ -1,6 +1,7 @@
 package com.someca.count.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import com.someca.count.base.BaseActivity
 import com.someca.count.databinding.ActivityStartBinding
