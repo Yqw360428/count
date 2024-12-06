@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.adjust.sdk.Adjust
 import com.adjust.sdk.AdjustEvent
 import com.github.lzyzsd.jsbridge.BridgeWebView
+import com.github.lzyzsd.jsbridge.BridgeWebViewClient
 import com.google.gson.Gson
 import com.someca.count.R
 import org.json.JSONObject
@@ -35,42 +36,52 @@ class WebActivity : AppCompatActivity() {
     }
 
     @SuppressLint("SetJavaScriptEnabled", "HardwareIds")
-    private fun initWeb(){
+    private fun initWeb() {
         webView.settings.apply {
             javaScriptEnabled = true
             domStorageEnabled = true
         }
-        webView.webViewClient = object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(
-                view: WebView?,
-                request: WebResourceRequest?
-            ): Boolean {
-                view?.loadUrl(request?.url.toString())
-                return true
-            }
-        }
+
+        webView.webViewClient = BridgeWebViewClient(webView)
 
         webView.registerHandler("oddTxhafCbd") { _, _ ->
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
 
+        webView.registerHandler("crsxnGdz") { _, _ ->
+            runCatching {
+                startActivity(Intent(Intent.ACTION_VIEW).apply {
+                    addCategory(Intent.CATEGORY_BROWSABLE)
+                    setData(Uri.parse("https://play.google.com/store/apps/details?id=$packageName&hl=hi&gl=in"))
+                })
+            }
+        }
+
         webView.registerHandler("gmlMsd") { data, _ ->
-            val afMap = Gson().fromJson<HashMap<String,String>>(JSONObject(data).optString("uooDvt"),HashMap::class.java)
+            val afMap = Gson().fromJson<HashMap<String, String>>(
+                JSONObject(data).optString("uooDvt"),
+                HashMap::class.java
+            )
             AdjustEvent("jghzox").let {
-                it.addCallbackParameter("data",afMap.toString())
+                it.addCallbackParameter("data", afMap.toString())
                 Adjust.trackEvent(it)
             }
             runCatching {
                 startActivity(Intent(Intent.ACTION_VIEW).apply {
                     addCategory(Intent.CATEGORY_BROWSABLE)
-                    setData(Uri.parse( "${afMap["af_r"]}"))
+                    setData(Uri.parse("${afMap["af_r"]}"))
                 })
             }
         }
 
         webView.registerHandler("dqqsCadh") { _, function ->
-            HashMap<String,String>().apply{
-                put("deviceid",Settings.Secure.getString(contentResolver,Settings.Secure.ANDROID_ID))
+            HashMap<String, String>().apply {
+                put("afid", "")
+                put(
+                    "deviceid",
+                    Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
+                )
             }.let {
                 function.onCallBack(Gson().toJson(it))
             }
@@ -79,7 +90,7 @@ class WebActivity : AppCompatActivity() {
 
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event?.action == KeyEvent.ACTION_DOWN){
+        if (keyCode == KeyEvent.KEYCODE_BACK && event?.action == KeyEvent.ACTION_DOWN) {
             if (webView.canGoBack()) {
                 webView.goBack()
                 return true
