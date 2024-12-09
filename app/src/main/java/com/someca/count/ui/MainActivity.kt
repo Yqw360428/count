@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun initView() {
         binding.run {
-            setOnSingleClick(mainSet, mainBasic, mainAdvanced, mainGst, mainVat, mainCash) {
+            setOnSingleClick(mainSet, mainBasic, mainAdvanced, mainGst, mainVat, mainCash,mainPrivacy) {
                 when (it) {
                     mainSet -> launch(SetActivity::class.java)
 
@@ -33,6 +33,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     })
 
                     mainCash -> launch(CashActivity::class.java)
+                    mainPrivacy-> launch(WebActivity::class.java,Bundle().apply {
+                        putString("url","https://www.financesimplified.pro/finance-simplified-privacy")
+                    })
                 }
             }
         }

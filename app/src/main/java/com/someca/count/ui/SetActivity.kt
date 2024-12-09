@@ -1,6 +1,7 @@
 package com.someca.count.ui
 
 import android.annotation.SuppressLint
+import android.os.Bundle
 import com.someca.count.BuildConfig
 import com.someca.count.R
 import com.someca.count.base.BaseActivity
@@ -26,6 +27,12 @@ class SetActivity : BaseActivity<ActivitySetBinding>() {
         binding.setEmail.setOnSingleClick {
             binding.setEmail.copyTextToClipboard()
             "Copied successfully".toastShort
+        }
+
+        binding.setPrivacy.setOnSingleClick {
+            launch(WebActivity::class.java, Bundle().apply {
+                putString("url","https://www.financesimplified.pro/finance-simplified-privacy")
+            })
         }
 
         binding.setVersion.text = "Version:${BuildConfig.VERSION_NAME}"

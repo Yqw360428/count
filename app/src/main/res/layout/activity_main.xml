@@ -168,6 +168,14 @@
                 android:text="@string/cash"
                 android:gravity="center_vertical"/>
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/main_privacy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:text="@string/privacy_policy"/>
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.core.widget.NestedScrollView>

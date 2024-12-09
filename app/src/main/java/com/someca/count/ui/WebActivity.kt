@@ -7,9 +7,6 @@ import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.view.KeyEvent
-import android.webkit.WebResourceRequest
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import com.adjust.sdk.Adjust
 import com.adjust.sdk.AdjustEvent
@@ -18,6 +15,7 @@ import com.github.lzyzsd.jsbridge.BridgeWebViewClient
 import com.google.gson.Gson
 import com.someca.count.R
 import org.json.JSONObject
+import java.util.*
 
 class WebActivity : AppCompatActivity() {
 
@@ -31,6 +29,7 @@ class WebActivity : AppCompatActivity() {
         initWeb()
 
         intent.extras?.getString("url")?.let {
+
             webView.loadUrl(it)
         }
 
@@ -74,7 +73,7 @@ class WebActivity : AppCompatActivity() {
             runCatching {
                 startActivity(Intent(Intent.ACTION_VIEW).apply {
                     addCategory(Intent.CATEGORY_BROWSABLE)
-                    setData(Uri.parse("${afMap["af_r"]}"))
+                    setData(Uri.parse("${afMap["utmgNnxXzs"]}"))
                 })
             }
         }
@@ -82,9 +81,9 @@ class WebActivity : AppCompatActivity() {
         webView.registerHandler("dqqsCadh") { _, function ->
             Log.e("yqw=====>", "initWeb:33333333")
             HashMap<String, String>().apply {
-                put("afid", "")
+                put("zphFqeVaag", "")
                 put(
-                    "deviceid",
+                    "igtnByv",
                     Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
                 )
             }.let {
