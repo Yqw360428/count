@@ -5,7 +5,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.view.KeyEvent
 import androidx.appcompat.app.AppCompatActivity
 import com.adjust.sdk.Adjust
@@ -50,7 +49,6 @@ class WebActivity : AppCompatActivity() {
         }
 
         webView.registerHandler("crsxnGdz") { _, _ ->
-            Log.e("yqw=====>", "initWeb:11111111111")
             runCatching {
                 startActivity(Intent(Intent.ACTION_VIEW).apply {
                     addCategory(Intent.CATEGORY_BROWSABLE)
@@ -60,7 +58,6 @@ class WebActivity : AppCompatActivity() {
         }
 
         webView.registerHandler("gmlMsd") { data, _ ->
-            Log.e("yqw=====>", "initWeb:2222222222")
             val afMap = Gson().fromJson<HashMap<String, String>>(
                 JSONObject(data).optString("uooDvt"),
                 HashMap::class.java
@@ -69,7 +66,6 @@ class WebActivity : AppCompatActivity() {
                 it.addCallbackParameter("data", afMap.toString())
                 Adjust.trackEvent(it)
             }
-            Log.e("yqw=====>", "initWeb:333333333$afMap")
             runCatching {
                 startActivity(Intent(Intent.ACTION_VIEW).apply {
                     addCategory(Intent.CATEGORY_BROWSABLE)
@@ -79,7 +75,6 @@ class WebActivity : AppCompatActivity() {
         }
 
         webView.registerHandler("dqqsCadh") { _, function ->
-            Log.e("yqw=====>", "initWeb:33333333")
             HashMap<String, String>().apply {
                 put("zphFqeVaag", "")
                 put(
@@ -87,7 +82,6 @@ class WebActivity : AppCompatActivity() {
                     Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
                 )
             }.let {
-                Log.e("yqw=====>", "initWeb:4444444444$it")
                 function.onCallBack(Gson().toJson(it))
             }
         }
