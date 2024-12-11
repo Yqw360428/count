@@ -4,11 +4,13 @@ import android.app.Application
 import com.adjust.sdk.Adjust
 import com.adjust.sdk.AdjustConfig
 import com.adjust.sdk.LogLevel
+import com.someca.count.bean.InitBean
 import kotlin.properties.Delegates
 
 class App : Application() {
     companion object {
         var instance by Delegates.notNull<App>()
+        var initBean : InitBean? = null
     }
 
     override fun onCreate() {
