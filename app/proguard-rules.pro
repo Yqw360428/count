@@ -7,6 +7,7 @@
 -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
 -keepattributes *Annotation*
 -keepattributes Signature
+-keepattributes InnerClasses
 -keepattributes SourceFile,LineNumberTable
 -allowaccessmodification
 -repackageclasses ''
@@ -35,6 +36,16 @@
 }
 -keep class * extends androidx.databinding.ViewDataBinding {
     *;
+}
+-keep class **Binding {
+    <init>(...);
+    public static ** inflate(...);
+    public static ** bind(...);
+}
+-keepclassmembers class * implements androidx.viewbinding.ViewBinding {
+  public static * inflate(android.view.LayoutInflater);
+  public static * inflate(android.view.LayoutInflater, android.view.ViewGroup, boolean);
+  public static * bind(android.view.View);
 }
 -keep public class * extends android.support.v4.**
 -keep public class * extends android.support.v7.**
@@ -90,16 +101,9 @@
 }
 -keep class com.someca.count.bean.**{*;}
 -keep class com.adjust.sdk.** { *; }
--keep class com.google.android.gms.common.ConnectionResult {
-   int SUCCESS;
-}
--keep class com.google.android.gms.ads.identifier.AdvertisingIdClient {
-   com.google.android.gms.ads.identifier.AdvertisingIdClient$Info getAdvertisingIdInfo(android.content.Context);
-}
--keep class com.google.android.gms.ads.identifier.AdvertisingIdClient$Info {
-   java.lang.String getId();
-   boolean isLimitAdTrackingEnabled();
-}
 -keep public class com.android.installreferrer.** { *; }
+-keep class com.someca.count.base.BaseAdapter {
+    *;
+}
 
 

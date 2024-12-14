@@ -95,6 +95,6 @@ class WebActivity : AppCompatActivity() {
                 return true
             }
         }
-        return true
+        return false
     }
 }
