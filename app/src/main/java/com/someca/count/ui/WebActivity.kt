@@ -92,8 +92,10 @@ class WebActivity : AppCompatActivity() {
         if (keyCode == KeyEvent.KEYCODE_BACK && event?.action == KeyEvent.ACTION_DOWN) {
             if (webView.canGoBack()) {
                 webView.goBack()
-                return true
+            }else{
+                finish()
             }
+            return true
         }
         return false
     }
